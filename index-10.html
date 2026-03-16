@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Youri Kariouk — Photographe & Vidéaste · Lyon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0d0d0d;
+      --white: #ffffff;
+      --grey-light: #f0f0f0;
+      --grey: #888888;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-thumb { background: var(--black); }
+
+    /* ===================== NAV ===================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px;
+      transition: padding 0.3s ease;
+    }
+
+    nav.scrolled { padding: 18px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); }
+    nav.scrolled .nav-link, nav.scrolled .lang-toggle { color: var(--black) !important; }
+    nav.scrolled .nav-logo-svg { fill: var(--black) !important; }
+
+    .nav-logo { text-decoration: none; }
+    .nav-logo-svg {
+      fill: var(--white);
+      transition: fill 0.3s;
+      display: block;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color 0.3s, opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 0.5; }
+
+    .lang-toggle {
+      background: none;
+      border: 1px solid currentColor;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding: 5px 10px;
+      transition: color 0.3s, background 0.2s, opacity 0.2s;
+    }
+    .lang-toggle:hover { opacity: 0.6; }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: grayscale(100%) brightness(0.85);
+    }
+
+    /* Dégradé gauche léger pour lisibilité du titre */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to right,
+        rgba(13,13,13,0.82) 0%,
+        rgba(13,13,13,0.55) 25%,
+        rgba(13,13,13,0.15) 45%,
+        transparent 62%
+      );
+    }
+
+    @media (max-width: 768px) {
+      .hero-bg { object-position: center center; }
+      #hero::before {
+        background: linear-gradient(to top,
+          rgba(0,0,0,0.82) 30%,
+          rgba(0,0,0,0.3) 65%,
+          transparent 100%
+        );
+      }
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 250px;
+      transform: none;
+      left: 150px;
+      width: 42%;
+      z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        top: auto;
+        bottom: 60px;
+        transform: none;
+        left: 24px;
+        right: 24px;
+        width: auto;
+        z-index: 2;
+      }
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(112px, 13vw, 185px);
+      color: var(--white);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-name { font-size: clamp(56px, 14vw, 90px); }
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 44px;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      padding: 15px 38px;
+      border: 1px solid rgba(255,255,255,0.8);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .btn-cta:hover { background: var(--white); color: var(--black); }
+
+    /* ===================== SECTIONS BASE ===================== */
+    .section { padding: 100px 48px; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+
+    .section-num {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--grey);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 60px);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+
+    /* ===================== PORTFOLIO ===================== */
+    #portfolio { background: var(--white); }
+
+    .portfolio-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-bottom: 48px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .filter-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+      padding: 0 24px 16px 0;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .filter-btn.active { color: var(--black); border-bottom-color: var(--black); }
+    .filter-btn:hover { color: var(--black); }
+
+    .portfolio-grid {
+      columns: 3;
+      column-gap: 8px;
+    }
+
+    @media (max-width: 900px) { .portfolio-grid { columns: 2; } }
+    @media (max-width: 600px) { .portfolio-grid { columns: 1; } }
+
+    .portfolio-item {
+      break-inside: avoid;
+      margin-bottom: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.5s ease, transform 0.5s ease;
+    }
+    .portfolio-item:hover img { filter: grayscale(0%); transform: scale(1.03); }
+
+    .portfolio-placeholder {
+      background: var(--grey-light);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* hidden item when filtered */
+    .portfolio-item.hidden { display: none; }
+
+    /* VIDEO section */
+    .video-section {
+      margin-top: 80px;
+      padding-top: 64px;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .video-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 48px;
+    }
+
+    .coming-soon-box {
+      border: 1px solid #e8e8e8;
+      padding: 80px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .coming-soon-box span {
+      width: 32px;
+      height: 1px;
+      background: #ccc;
+      display: inline-block;
+    }
+
+    .coming-soon-box p {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    /* ===================== PRESTATIONS ===================== */
+    #prestations { background: var(--black); color: var(--white); }
+    #prestations .section-num { color: rgba(255,255,255,0.25); }
+    #prestations .section-title { color: var(--white); }
+
+    .prestations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    @media (max-width: 1100px) { .prestations-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 680px)  { .prestations-grid { grid-template-columns: 1fr; } }
+
+    .presta-col {
+      padding: 40px 40px 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .presta-col:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.06); margin-right: 40px; }
+
+    .presta-col h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .presta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .presta-row:last-of-type { border-bottom: none; }
+
+    .presta-desc {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.72);
+      flex: 1;
+    }
+
+    .presta-price {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .presta-note {
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contact { background: var(--white); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) { .contact-inner { grid-template-columns: 1fr; gap: 56px; } }
+
+    .contact-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 6.5vw, 88px);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+    }
+
+    .contact-left p {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--grey);
+      max-width: 340px;
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 32px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .form-group label {
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: none;
+      border: none;
+      border-bottom: 1px solid #d8d8d8;
+      padding: 12px 0;
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: var(--black);
+      outline: none;
+      width: 100%;
+      border-radius: 0;
+      -webkit-appearance: none;
+      transition: border-color 0.25s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-bottom-color: var(--black); }
+
+    .form-group textarea { resize: none; min-height: 110px; }
+
+    .form-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+      padding-right: 20px;
+    }
+
+    .btn-submit {
+      align-self: flex-start;
+      padding: 15px 40px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .btn-submit:hover { opacity: 0.65; }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      padding: 28px 48px;
+      border-top: 1px solid #e8e8e8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer p { font-size: 10.5px; color: var(--grey); letter-spacing: 0.06em; }
+
+    /* ===================== LANGUAGE SYSTEM ===================== */
+    .fr, .en { }
+    body[data-lang="en"] .fr { display: none !important; }
+    body[data-lang="fr"] .en { display: none !important; }
+
+    /* ===================== MOBILE FIXES ===================== */
+    @media (max-width: 768px) {
+
+      /* Nav */
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-right { gap: 16px; }
+      .nav-link { font-size: 10px; letter-spacing: 0.12em; }
+      .nav-logo-svg { height: 32px !important; }
+      .lang-toggle { padding: 4px 8px; font-size: 9px; }
+
+      /* General sections */
+      .section { padding: 72px 24px; }
+
+      /* Hero */
+      .hero-name { font-size: clamp(56px, 14vw, 90px); }
+
+      /* Portfolio filters - scrollable horizontally */
+      .portfolio-filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 12px;
+        gap: 0;
+        scrollbar-width: none;
+      }
+      .portfolio-filters::-webkit-scrollbar { display: none; }
+      .filter-btn { white-space: nowrap; padding-right: 20px; }
+
+      /* Portfolio grid */
+      .portfolio-grid { columns: 1; }
+
+      /* Prestations */
+      .prestations-grid { grid-template-columns: 1fr; }
+      .presta-col { padding: 32px 0; margin-right: 0 !important; border-right: none !important; }
+      #prestations { padding: 72px 24px; }
+
+      /* Contact */
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      #contact { padding: 72px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      /* Footer */
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 6px; }
+
+      /* Section header */
+      .section-header { margin-bottom: 40px; }
+    }
+
+    /* Prevent horizontal overflow globally */
+    html, body { max-width: 100%; overflow-x: hidden; }
+  
+    /* ===================== LIGHTBOX ===================== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 2px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 28px;
+      background: none; border: none;
+      color: #fff; font-size: 40px;
+      cursor: pointer; line-height: 1;
+      opacity: 0.7; transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: none; border: none;
+      color: #fff; font-size: 32px;
+      cursor: pointer; opacity: 0.6;
+      transition: opacity 0.2s; padding: 16px;
+    }
+    .lightbox-prev:hover, .lightbox-next:hover { opacity: 1; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .portfolio-item img { cursor: pointer; }
+
+</style>
+</head>
+<body data-lang="fr">
+
+  <!-- ============ NAV ============ -->
+  <nav id="mainNav">
+    <a href="#hero" class="nav-logo">
+      <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="52" aria-label="Youri Kariouk"><path d="M500.19 306.197C527.399 305.169 556.633 306.799 584.038 305.95C572.787 320.755 560.82 338.449 549.91 353.842L475.073 459.288C461.46 479.726 444.45 502.843 430.072 523.041C429.474 544.132 429.997 567.769 429.994 589.074L429.987 718.067C406.635 718.128 382.394 717.69 359.155 718.165C358.678 697.228 359.044 674.903 359.045 653.844L359.003 526.452C354.417 519.154 346.655 508.995 341.497 501.8L307.723 454.799L200.502 306.144C211.383 305.63 224.742 306.01 235.878 306.02C253.831 305.955 271.784 306.032 289.736 306.253C294.063 313.109 301.107 322.456 305.89 329.179L336.192 371.763L372.945 423.494C380.219 433.764 387.949 445.132 395.536 455.069C400.528 447.036 408.312 436.577 413.836 428.695L449.295 378.293L482.135 331.584C487.566 323.857 494.451 313.459 500.19 306.197Z"/><path d="M746.529 306.261C760.709 305.708 776.771 306.088 791.142 306.041C780.716 317.102 769.681 329.877 759.349 341.182L671.465 437.717L638.859 473.591C633.298 479.627 628.757 484.965 622.766 490.641C632.279 501.885 643.008 516.688 652.13 528.578L706.484 599.454L773.026 685.885C781.009 696.367 789.84 707.189 797.452 717.838C788.058 718.478 774.989 718.096 765.442 718.088C745.817 718.008 726.192 718.046 706.567 718.202C700.456 711.481 694.671 703.039 689.016 695.824C676.351 679.667 664.063 662.12 651.158 646.286C645.384 637.811 635.706 626.01 629.289 617.677L592.773 569.92C586.674 561.953 579.874 553.582 574.017 545.52C571.129 549.687 560.81 560.214 556.93 564.534C542.708 580.41 528.387 596.198 513.968 611.895C505.417 621.271 496.931 630.706 488.511 640.2C484.635 644.561 478.207 652.324 474.239 655.948L474.281 558.499C482.227 549.123 491.31 539.523 499.631 530.366L540.551 485.33L638.328 377.657C659.378 354.572 681.764 330.563 702.177 307.066C716.462 306.531 732.118 306.518 746.529 306.261Z"/></svg>
+    </a>
+    <ul class="nav-right">
+      <li><a href="#portfolio" class="nav-link fr">Portfolio</a><a href="#portfolio" class="nav-link en">Portfolio</a></li>
+      <li><a href="#prestations" class="nav-link fr">Prestations</a><a href="#prestations" class="nav-link en">Services</a></li>
+      <li><a href="#contact" class="nav-link fr">Contact</a><a href="#contact" class="nav-link en">Contact</a></li>
+      <li><button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button></li>
+    </ul>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <img src="images/hero-v2.webp" alt="Youri Kariouk" class="hero-bg" />
+
+    <div class="hero-content">
+      <h1 class="hero-name">YOURI<br>KARIOUK</h1>
+      <p class="hero-tagline fr">Photographe &amp; Vidéaste · Lyon</p>
+      <p class="hero-tagline en">Photographer &amp; Videographer · Lyon</p>
+      <a href="#portfolio" class="btn-cta fr">Découvrir mon travail</a>
+      <a href="#portfolio" class="btn-cta en">Discover my work</a>
+    </div>
+  </section>
+
+  <!-- ============ PORTFOLIO ============ -->
+  <section id="portfolio" class="section">
+    <div class="section-header">
+      <span class="section-num">01 —</span>
+      <h2 class="section-title fr">Portfolio</h2>
+      <h2 class="section-title en">Portfolio</h2>
+    </div>
+
+    <!-- FILTRES -->
+    <div class="portfolio-filters">
+      <button class="filter-btn active fr" data-filter="all">Tout</button>
+      <button class="filter-btn active en" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="immobilier">Immobilier</button>
+      <button class="filter-btn fr" data-filter="produit">Photo produit</button>
+      <button class="filter-btn en" data-filter="produit">Product</button>
+      <button class="filter-btn" data-filter="food">Food</button>
+      <button class="filter-btn fr" data-filter="portrait">Portrait · Reportage</button>
+      <button class="filter-btn en" data-filter="portrait">Portrait</button>
+      <button class="filter-btn fr" data-filter="evenementiel">Événementiel</button>
+      <button class="filter-btn en" data-filter="evenementiel">Events</button>
+      <button class="filter-btn fr" data-filter="ia">Créations IA</button>
+      <button class="filter-btn en" data-filter="ia">AI Creations</button>
+    </div>
+
+        <!-- GRILLE PHOTOS — Remplacer les placeholders par vos vraies images -->
+    <div class="portfolio-grid" id="portfolioGrid">
+
+
+      <!-- == IMMOBILIER == -->
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-1.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-2.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-3.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-4.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-5.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-6.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-7.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-8.webp" alt="Immobilier" loading="lazy">
+      </div>
+      <div class="portfolio-item" data-category="immobilier">
+        <img src="images/portfolio/immo-9.webp" alt="Immobilier" loading="lazy">
+      </div>
+
+
+      <!-- == PRODUIT == -->
+      <!-- <div class="portfolio-item" data-category="produit">
+        <img src="images/portfolio/produit-01.webp" alt="Photo produit" loading="lazy">
+      </div> -->
+
+      <!-- == PORTRAIT / REPORTAGE == -->
+      <!-- <div class="portfolio-item" data-category="portrait">
+        <img src="images/portfolio/portrait-01.webp" alt="Portrait" loading="lazy">
+      </div> -->
+
+      <!-- == FOOD == -->
+      <!-- <div class="portfolio-item" data-category="food">
+        <img src="images/portfolio/food-01.webp" alt="Food" loading="lazy">
+      </div> -->
+
+      <!-- == ÉVÉNEMENTIEL == -->
+      <!-- <div class="portfolio-item" data-category="evenementiel">
+        <img src="images/portfolio/evenementiel-01.webp" alt="Événementiel" loading="lazy">
+      </div> -->
+
+      <!-- == CRÉATIONS IA == -->
+      <!-- <div class="portfolio-item" data-category="ia">
+        <img src="images/portfolio/ia-01.webp" alt="Création IA" loading="lazy">
+      </div> -->
+
+    </div>
+
+    <!-- RÉALISATIONS VIDÉOS -->
+    <div class="video-section">
+      <p class="video-label fr">— Réalisations vidéos</p>
+      <p class="video-label en">— Video work</p>
+      <div class="coming-soon-box">
+        <span></span>
+        <p class="fr">En cours de préparation</p>
+        <p class="en">Coming soon</p>
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRESTATIONS ============ -->
+  <section id="prestations" class="section">
+    <div class="section-header">
+      <span class="section-num">02 —</span>
+      <h2 class="section-title fr">Prestations</h2>
+      <h2 class="section-title en">Services</h2>
+    </div>
+
+    <div class="prestations-grid">
+
+      <!-- IMMOBILIER -->
+      <div class="presta-col">
+        <h3 class="fr">Immobilier</h3>
+        <h3 class="en">Real Estate</h3>
+        <div class="presta-row">
+          <span class="presta-desc fr">Shooting photo — 15 photos</span>
+          <span class="presta-desc en">Photo shoot — 15 photos</span>
+          <span class="presta-price">110 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Shooting photo — 20 photos</span>
+          <span class="presta-desc en">Photo shoot — 20 photos</span>
+          <span class="presta-price">140 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Shooting photo — 25 photos</span>
+          <span class="presta-desc en">Photo shoot — 25 photos</span>
+          <span class="presta-price">170 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Sur mesure — biens d'exception, vidéo…</span>
+          <span class="presta-desc en">Custom — luxury properties, video…</span>
+          <span class="presta-price fr">Sur devis</span>
+          <span class="presta-price en">On quote</span>
+        </div>
+      </div>
+
+      <!-- PHOTO PRODUIT -->
+      <div class="presta-col">
+        <h3 class="fr">Photo produit</h3>
+        <h3 class="en">Product Photo</h3>
+        <div class="presta-row">
+          <span class="presta-desc fr">Packshot simple — fond blanc, retouche légère</span>
+          <span class="presta-desc en">Simple packshot — white bg, light retouch</span>
+          <span class="presta-price">15 €/photo</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Packshot complexe — macro, lumière, retouche avancée</span>
+          <span class="presta-desc en">Complex packshot — macro, lighting, advanced edit</span>
+          <span class="presta-price">20 €/photo</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Packshot mise en situation IA</span>
+          <span class="presta-desc en">AI lifestyle packshot</span>
+          <span class="presta-price">25 €/photo</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Sur mesure — vidéo, demande particulière</span>
+          <span class="presta-desc en">Custom — video, specific request</span>
+          <span class="presta-price fr">Sur devis</span>
+          <span class="presta-price en">On quote</span>
+        </div>
+        <p class="presta-note fr">Minimum 10 photos · Tarifs dégressifs à partir de la 20ème photo (−5 €/photo) et de la 40ème (−5 €/photo supplémentaire)</p>
+        <p class="presta-note en">Minimum 10 photos · Volume discounts from the 20th (−€5/photo) and 40th photo (−€5/photo additional)</p>
+      </div>
+
+      <!-- PHOTO FOOD -->
+      <div class="presta-col">
+        <h3>Photo Food</h3>
+        <div class="presta-row">
+          <span class="presta-desc fr">Formule personnalisée sur mesure</span>
+          <span class="presta-desc en">Custom tailored package</span>
+          <span class="presta-price fr">À partir de 480 €</span>
+          <span class="presta-price en">From €480</span>
+        </div>
+        <p class="presta-note fr">Base : 3h de tournage à 160 €/h · Tarif final établi sur devis</p>
+        <p class="presta-note en">Base: 3h shooting at €160/h · Final rate established on quote</p>
+      </div>
+
+      <!-- PORTRAIT / REPORTAGE -->
+      <div class="presta-col">
+        <h3 class="fr">Portrait · Reportage</h3>
+        <h3 class="en">Portrait · Reportage</h3>
+        <div class="presta-row">
+          <span class="presta-desc fr">Formule à l'heure — min. 15 photos</span>
+          <span class="presta-desc en">Hourly — min. 15 photos</span>
+          <span class="presta-price">90 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Demi-journée — min. 30 photos</span>
+          <span class="presta-desc en">Half-day — min. 30 photos</span>
+          <span class="presta-price">320 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Journée entière — min. 50 photos</span>
+          <span class="presta-desc en">Full day — min. 50 photos</span>
+          <span class="presta-price">580 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Formule sur mesure</span>
+          <span class="presta-desc en">Custom package</span>
+          <span class="presta-price fr">Sur devis</span>
+          <span class="presta-price en">On quote</span>
+        </div>
+      </div>
+
+      <!-- CONTENU DIGITAL -->
+      <div class="presta-col">
+        <h3 class="fr">Contenu Digital</h3>
+        <h3 class="en">Digital Content</h3>
+        <div class="presta-row">
+          <span class="presta-desc fr">Création de contenu sur mesure</span>
+          <span class="presta-desc en">Custom content creation</span>
+          <span class="presta-price fr">Sur devis</span>
+          <span class="presta-price en">On quote</span>
+        </div>
+        <p class="presta-note fr">Stratégie visuelle, photos & vidéos adaptées à vos réseaux sociaux et supports digitaux</p>
+        <p class="presta-note en">Visual strategy, photos & videos tailored to your social media and digital platforms</p>
+      </div>
+
+      <!-- ÉVÉNEMENTIEL -->
+      <div class="presta-col">
+        <h3 class="fr">Événementiel</h3>
+        <h3 class="en">Events</h3>
+        <div class="presta-row">
+          <span class="presta-desc fr">Formule à l'heure</span>
+          <span class="presta-desc en">Hourly</span>
+          <span class="presta-price">120 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Demi-journée</span>
+          <span class="presta-desc en">Half-day</span>
+          <span class="presta-price">440 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Journée entière</span>
+          <span class="presta-desc en">Full day</span>
+          <span class="presta-price">780 €</span>
+        </div>
+        <div class="presta-row">
+          <span class="presta-desc fr">Formule sur mesure</span>
+          <span class="presta-desc en">Custom</span>
+          <span class="presta-price fr">Sur devis</span>
+          <span class="presta-price en">On quote</span>
+        </div>
+        <p class="presta-note fr">Tarifs indicatifs · Devis personnalisé sur demande</p>
+        <p class="presta-note en">Indicative rates · Custom quote on request</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="section">
+    <div class="section-header">
+      <span class="section-num">03 —</span>
+      <h2 class="section-title fr">Contact</h2>
+      <h2 class="section-title en">Contact</h2>
+    </div>
+
+    <div class="contact-inner">
+      <div class="contact-left">
+        <h2 class="fr">TRAVAILLONS<br>ENSEMBLE</h2>
+        <h2 class="en">LET'S WORK<br>TOGETHER</h2>
+        <p class="fr">Vous avez un projet, une idée, une demande de devis&nbsp;? Remplissez le formulaire, je vous répondrai dans les plus brefs délais.</p>
+        <p class="en">Got a project, an idea, or a quote request? Fill in the form and I'll get back to you as soon as possible.</p>
+      </div>
+
+      <!--
+        FORMSPREE : remplacez "VOTRE_ID_FORMSPREE" par l'ID obtenu sur formspree.io
+        Exemple : action="https://formspree.io/f/xpzgwkla"
+      -->
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/VOTRE_ID_FORMSPREE"
+        method="POST"
+      >
+        <input type="hidden" name="_replyto" value="youri.kariouk.pro@gmail.com" />
+        <input type="hidden" name="_subject" id="formSubject" value="Nouveau message — yourikariouk.com" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="fr">Nom &amp; Prénom</label>
+            <label class="en">Full Name</label>
+            <input type="text" name="name" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="fr">Motif du contact</label>
+          <label class="en">Subject</label>
+          <select name="motif" required>
+            <option value="" disabled selected></option>
+            <option value="Demande de devis" class="fr">Demande de devis</option>
+            <option value="Quote request" class="en">Quote request</option>
+            <option value="Renseignement" class="fr">Renseignement général</option>
+            <option value="General inquiry" class="en">General inquiry</option>
+            <option value="Partenariat" class="fr">Partenariat / Collaboration</option>
+            <option value="Partnership" class="en">Partnership / Collaboration</option>
+            <option value="Autre" class="fr">Autre</option>
+            <option value="Other" class="en">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="fr">Entreprise (optionnel)</label>
+          <label class="en">Company (optional)</label>
+          <input type="text" name="company" />
+        </div>
+
+        <div class="form-group">
+          <label class="fr">Message</label>
+          <label class="en">Message</label>
+          <textarea name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit fr">Envoyer</button>
+        <button type="submit" class="btn-submit en">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <p>© 2026 Youri Kariouk</p>
+    <p class="fr">Photographe &amp; Vidéaste · Lyon</p>
+    <p class="en">Photographer &amp; Videographer · Lyon</p>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <!-- ============ LIGHTBOX ============ -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
+    <button class="lightbox-prev" id="lightboxPrev" aria-label="Précédent">&#8592;</button>
+    <button class="lightbox-next" id="lightboxNext" aria-label="Suivant">&#8594;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+
+  <script>
+    /* --- NAV scroll behaviour --- */
+    const nav = document.getElementById('mainNav');
+    const heroSection = document.getElementById('hero');
+
+    function updateNav() {
+      const heroH = heroSection.offsetHeight;
+      if (window.scrollY > heroH - 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    /* --- Language toggle --- */
+    function toggleLang() {
+      const body = document.body;
+      const btn = document.getElementById('langBtn');
+      if (body.dataset.lang === 'fr') {
+        body.dataset.lang = 'en';
+        btn.textContent = 'FR';
+        document.documentElement.lang = 'en';
+      } else {
+        body.dataset.lang = 'fr';
+        btn.textContent = 'EN';
+        document.documentElement.lang = 'fr';
+      }
+    }
+
+    /* --- Portfolio filters --- */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Active state on all buttons with same filter value
+        filterBtns.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll(`.filter-btn[data-filter="${filter}"]`).forEach(b => b.classList.add('active'));
+
+        // Show/hide items
+        portfolioItems.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  
+    /* --- Lightbox --- */
+    let lbImages = [];
+    let lbIndex = 0;
+
+    function openLightbox(imgs, index) {
+      lbImages = imgs;
+      lbIndex = index;
+      document.getElementById('lightboxImg').src = lbImages[lbIndex];
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function lbMove(dir) {
+      lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+      document.getElementById('lightboxImg').src = lbImages[lbIndex];
+    }
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => lbMove(-1));
+    document.getElementById('lightboxNext').addEventListener('click', () => lbMove(1));
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      const lb = document.getElementById('lightbox');
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbMove(-1);
+      if (e.key === 'ArrowRight') lbMove(1);
+    });
+
+    function bindLightbox() {
+      const visibleItems = Array.from(document.querySelectorAll('.portfolio-item:not(.hidden) img'));
+      visibleItems.forEach((img, i) => {
+        img.onclick = () => openLightbox(visibleItems.map(im => im.src), i);
+      });
+    }
+
+    // Bind on filter change + initial
+    filterBtns.forEach(btn => btn.addEventListener('click', () => setTimeout(bindLightbox, 50)));
+    document.addEventListener('DOMContentLoaded', bindLightbox);
+
+</script>
+</body>
+</html>
